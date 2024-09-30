@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "lint": "eslint . --ext .ts,.js",          
+    "lint": "eslint . --ext .ts,.js",
     "lint:fix": "eslint . --ext .ts,.js --fix",
-    "format": "prettier --write .",            
-    "check-format": "prettier --check .",     
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
     "test:ci": "npx playwright test --reporter=dot"
   },
   "keywords": [],

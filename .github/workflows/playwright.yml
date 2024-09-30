@@ -28,7 +28,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '21'
+          node-version: "21"
 
       # Step 3: Install dependencies
       - name: Install dependencies
@@ -40,7 +40,7 @@ jobs:
 
       # Step 5: Run Playwright tests
       - name: Run Playwright Tests
-        run: npx playwright test 
+        run: npx playwright test
 
       # Step 6: Upload test results
       - name: Upload Playwright Test Results
@@ -57,4 +57,3 @@ jobs:
         with:
           name: playwright-screenshots-videos
           path: playwright-report/
-

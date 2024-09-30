@@ -1,4 +1,4 @@
-Adde the following requirements utlising playwright and integrated with Github CI 
+Adde the following requirements utlising playwright and integrated with Github CI
 
 1. Navigate to the employee tab on the left-hand side of the panel and add an employee by filling in all the fields, including optional ones.
 
