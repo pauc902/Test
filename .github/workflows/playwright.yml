@@ -1,0 +1,60 @@
+# .github/workflows/playwright.yml
+name: Playwright Tests
+
+# Controls when the workflow will run
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    # Define a build matrix if you want to run tests on multiple browsers/platforms
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run Playwright to install browser dependencies
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      # Step 5: Run Playwright tests
+      - name: Run Playwright Tests
+        run: npx playwright test --browser=${{ matrix.browser }}
+
+      # Step 6: Upload test results
+      - name: Upload Playwright Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-test-results
+          path: test-results/
+
+      # Step 7: Optionally upload screenshots/videos if tests fail
+      - name: Upload Playwright Screenshots and Videos
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-screenshots-videos
+          path: playwright-report/
+
