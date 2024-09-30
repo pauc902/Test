@@ -4,7 +4,6 @@ import { faker } from '@faker-js/faker/locale/en';
 import { env } from 'process';
 
 
-
 const login = async (page) => {
   await page.goto('https://sandbox-login.brighthr.com/');
   
@@ -62,19 +61,6 @@ test.describe('Employee Management', () => {
     await login(page);
   });
 
-test('add a single employee', async({ page}) =>{
-
-  await page.goto('/employee-hub')
-    
-  await expect(page).toHaveTitle(/Employee Hub - BrightHR/);
-
-  const employee1 = generateEmployeeData();
-
-  await addEmployee(page, employee1);
-
-  await page.click('button:text("Add another employee")');
-
-})  
 
 test('add employee and then another employee',  async ({ page }) => {
 
@@ -90,7 +76,19 @@ test('add employee and then another employee',  async ({ page }) => {
 
   await addAnotherEmployee(page, employee2);
 
+  await page.goto('/employee-hub')
+
+  await page.fill('input[placeholder="Name or job title..."]', employee1.lastName);
+
+  await expect(page.getByText(employee1.lastName).last()).toBeVisible();
+
+  await page.fill('input[placeholder="Name or job title..."]', employee2.lastName);
+
+  await expect(page.getByText(employee2.lastName).last()).toBeVisible();
+
+
 
 });
+
 
 });
