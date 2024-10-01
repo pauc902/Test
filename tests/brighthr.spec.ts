@@ -54,7 +54,7 @@ const generateEmployeeData = () => {
     email: faker.internet.email(),
     phoneNumber: faker.phone.number({ style: "international" }),
     jobTitle: faker.person.jobTitle(),
-    startDate: "Sun Sep 08 2024",
+    startDate: "Sun Oct 06 2024",
   };
 };
 
